@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DelishDeck - Recipe Cards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg-color: #fff;
+      --text-color: #333;
+      --card-bg: #f9f9f9;
+      --accent: #ff6f61;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #f5f5f5;
+      --card-bg: #1e1e1e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding: 2rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    #controls {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    #searchBox {
+      padding: 0.5rem;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #filters button, #themeToggle {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+      transition: margin-right 2s ease-in-out 0.5s;
+    }
+
+    #filters button:hover, #themeToggle:hover {
+      background: #e85c50;
+    }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 1rem;
+    }
+
+    .card h2 {
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+
+    .card .description {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .card ul {
+      margin-left: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .card .instructions {
+      display: none;
+      font-size: 0.9rem;
+    }
+
+    .toggle-btn {
+      background: transparent;
+      border: none;
+      color: var(--accent);
+      cursor: pointer;
+      padding: 0.5rem 0;
+    }
+
+    @media screen and (max-width: 400px) {
+      body {
+        padding: 1rem;
+      }
+
+      #searchBox {
+        width: 100%;
+      }
+
+      .recipe-grid {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>DelishDeck - Recipe Cards</h1>
+
+  <div id="controls">
+    <input type="text" id="searchBox" placeholder="Search recipes...">
+    <div id="filters">
+      <button data-cuisine="all">All</button>
+      <button data-cuisine="italian">Italian</button>
+      <button data-cuisine="indian">Indian</button>
+      <button data-cuisine="mexican">Mexican</button>
+    </div>
+    <button id="themeToggle">🌙 Dark Mode</button>
+  </div>
+
+  <div class="recipe-grid" id="recipeContainer">
+    <!-- Italian -->
+    <div class="card" data-cuisine="italian">
+      <img src="images/Italian-Pink-Sauce-Pasta-Recipe-Tomato-Cream-17.jpg" alt="Pasta">
+      <div class="card-content">
+        <h2>Italian Pasta</h2>
+        <p class="description">A classic Italian pasta recipe with rich tomato sauce and basil.</p>
+        <ul>
+          <li>Pasta</li>
+          <li>Tomato Sauce</li>
+          <li>Basil</li>
+          <li>Cheese</li>
+        </ul>
+        <button class="toggle-btn">Show Instructions</button>
+        <p class="instructions">Boil pasta, prepare sauce with tomatoes and herbs, mix and serve hot with cheese on top.</p>
+      </div>
+    </div>
+
+    <!-- Indian -->
+    <div class="card" data-cuisine="indian">
+      <img src="images/chicken-biryani-5.jpg" alt="Biryani">
+      <div class="card-content">
+        <h2>Chicken Biryani</h2>
+        <p class="description">A flavorful Indian rice dish layered with spicy chicken masala.</p>
+        <ul>
+          <li>Rice</li>
+          <li>Chicken</li>
+          <li>Spices</li>
+          <li>Yogurt</li>
+        </ul>
+        <button class="toggle-btn">Show Instructions</button>
+        <p class="instructions">Marinate chicken, cook with spices, layer with rice, and steam on low heat.</p>
+      </div>
+    </div>
+
+    <!-- Mexican -->
+    <div class="card" data-cuisine="mexican">
+      <img src="images/street-tacos-recipe-2.jpg" alt="Tacos">
+      <div class="card-content">
+        <h2>Mexican Tacos</h2>
+        <p class="description">Spicy and crunchy tacos filled with beans, veggies and sauces.</p>
+        <ul>
+          <li>Tortilla</li>
+          <li>Beans</li>
+          <li>Veggies</li>
+          <li>Salsa</li>
+        </ul>
+        <button class="toggle-btn">Show Instructions</button>
+        <p class="instructions">Warm tortillas, fill with cooked beans and veggies, top with salsa and cheese.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Dark Mode Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      themeToggle.textContent = newTheme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+    });
+
+    // Show/Hide Instructions
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const instructions = btn.nextElementSibling;
+        instructions.style.display = instructions.style.display === 'block' ? 'none' : 'block';
+        btn.textContent = instructions.style.display === 'block' ? 'Hide Instructions' : 'Show Instructions';
+      });
+    });
+
+    // Cuisine Filter
+    document.querySelectorAll('#filters button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cuisine = btn.dataset.cuisine;
+        document.querySelectorAll('.card').forEach(card => {
+          card.style.display = (cuisine === 'all' || card.dataset.cuisine === cuisine) ? 'block' : 'none';
+        });
+      });
+    });
+
+    // Search Box
+    document.getElementById('searchBox').addEventListener('input', (e) => {
+      const keyword = e.target.value.toLowerCase();
+      document.querySelectorAll('.card').forEach(card => {
+        const name = card.querySelector('h2').textContent.toLowerCase();
+        card.style.display = name.includes(keyword) ? 'block' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
