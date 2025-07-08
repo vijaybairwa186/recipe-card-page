@@ -1,1 +1,1 @@
-This My Project URL : https://recipe-card-page.netlify.app
+This is My Project URL : https://recipe-card-page.netlify.app
